@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DroidCafe">
-        <activity android:name="com.example.droidcafeoption.OrderActivity"></activity>
+        <activity android:name="com.example.droidcafeoption.OrderActivity"
+            android:label="Order Activity"
+            android:parentActivityName=".MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
         <activity
             android:name="com.example.droidcafeoption.MainActivity"
             android:label="@string/app_name"
