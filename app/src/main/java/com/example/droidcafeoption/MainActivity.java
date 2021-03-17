@@ -3,7 +3,9 @@ package com.example.droidcafeoption;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.droidcafeoption.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,11 +14,8 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private String mOrderMessage;
-    public static final String EXTRA_MESSAGE = "com.example.droidcafe.extra.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +28,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, mOrderMessage);
-                startActivity(intent);
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
     }
@@ -58,32 +56,22 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void displayToast(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    public void onClickImage(View view){
+        Intent intent;
+        switch (view.getId()){
+            case R.id.donut :
+                intent = new Intent(this, com.example.droidcafeoption.SecondActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.froyo:
+                intent = new Intent(this, com.example.droidcafeoption.ThirdActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.icecream:
+                intent = new Intent(this, com.example.droidcafeoption.FourthActivity.class);
+                startActivity(intent);
+                break;
+            default: break;
+        }
     }
-
-    /**
-     * Shows a message that the donut image was clicked.
-     */
-    public void showDonutOrder(View view) {
-        mOrderMessage = getString(R.string.donut_order_message);
-        displayToast(mOrderMessage);
-    }
-
-    /**
-     * Shows a message that the ice cream sandwich image was clicked.
-     */
-    public void showIceCreamOrder(View view) {
-        mOrderMessage = getString(R.string.ice_cream_order_message);
-        displayToast(mOrderMessage);
-    }
-
-    /**
-     * Shows a message that the froyo image was clicked.
-     */
-    public void showFroyoOrder(View view) {
-        mOrderMessage = getString(R.string.froyo_order_message);
-        displayToast(mOrderMessage);
-    }
-
 }
